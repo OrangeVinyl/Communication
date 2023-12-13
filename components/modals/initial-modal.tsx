@@ -64,7 +64,7 @@ export const InitialModal = () => {
     <Dialog open>
       <DialogContent className={'bg-white text-black p-0 overflow-hidden'}>
         <DialogHeader className={'pt-8 px-6'}>
-          <DialogTitle className={'text-2xl text-center'}>Customize your server</DialogTitle>
+          <DialogTitle className={'text-2xl text-center'}>🎉 서버를 꾸며주세요</DialogTitle>
           <DialogDescription className={'text-center text-zinc-500'}>
             ✨서버에게 개성을 부여하려면 이름과 이미지를 설정해보세요!
             <br />
@@ -99,7 +99,7 @@ export const InitialModal = () => {
                     <FormLabel
                       className={'uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70'}
                     >
-                      Server name
+                      서버 명
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -118,7 +118,7 @@ export const InitialModal = () => {
             </div>
             <DialogFooter className={'bg-gray-100 px-6 py-5'}>
               <Button disabled={isLoading} variant={'primary'}>
-                Create
+                생성
               </Button>
             </DialogFooter>
           </form>
