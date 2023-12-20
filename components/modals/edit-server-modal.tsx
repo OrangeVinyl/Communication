@@ -5,6 +5,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 // components
 import { Input } from '@/components/ui/input';
@@ -29,7 +30,6 @@ import { FileUpload } from '@/components/file-upload';
 
 // hooks
 import { useModal } from '@/hooks/use-modal-store';
-import {useEffect} from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -54,19 +54,19 @@ export const EditServerModal = () => {
       imageUrl: '',
     },
   });
-  const isLoading = form.formState.isSubmitting;
-
   useEffect(() => {
     if (server) {
       form.setValue('name', server.name);
       form.setValue('imageUrl', server.imageUrl);
     }
-  },[server, form])
+  }, [server, form]);
+
+  const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       console.log(values);
-      await axios.post('/api/servers', values);
+      await axios.patch(`/api/servers/${server?.id}`, values);
 
       form.reset();
       router.refresh();
@@ -139,7 +139,7 @@ export const EditServerModal = () => {
             </div>
             <DialogFooter className={'bg-gray-100 px-6 py-5'}>
               <Button disabled={isLoading} variant={'primary'}>
-                생성
+                저장
               </Button>
             </DialogFooter>
           </form>
