@@ -58,13 +58,19 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem className={'px-3 py-2 text-sm cursor-pointer'}>
+          <DropdownMenuItem
+            onClick={() => onOpen('members', { server })}
+            className={'px-3 py-2 text-sm cursor-pointer'}
+          >
             멤버 관리
             <Users className={'h-4 w-4 ml-auto'} />
           </DropdownMenuItem>
         )}
         {isModerator && (
-          <DropdownMenuItem className={'px-3 py-2 text-sm cursor-pointer'}>
+          <DropdownMenuItem
+            onClick={() => onOpen('createChannel')}
+            className={'px-3 py-2 text-sm cursor-pointer'}
+          >
             채널 생성
             <PlusCircle className={'h-4 w-4 ml-auto'} />
           </DropdownMenuItem>
