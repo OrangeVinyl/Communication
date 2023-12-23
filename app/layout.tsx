@@ -5,11 +5,13 @@ import { ClerkProvider } from '@clerk/nextjs';
 //style
 import './globals.css';
 import { Open_Sans } from 'next/font/google';
-import { cn } from '@/lib/utils';
 
 //component
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ModalProvider } from '@/components/providers/modal-provider';
+
+// util
+import { cn } from '@/lib/utils';
 
 const font = Open_Sans({ subsets: ['latin'] });
 

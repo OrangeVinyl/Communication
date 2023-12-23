@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { NextResponse } from 'next/server';
+
+// db
 import { db } from '@/lib/db';
 import { currentProfile } from '@/lib/current-profile';
 

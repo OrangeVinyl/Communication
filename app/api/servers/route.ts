@@ -1,10 +1,10 @@
-import { db } from '@/lib/db';
-import { v4 as uuidv4 } from 'uuid';
 import { NextResponse } from 'next/server';
-import { currentProfile } from '@/lib/current-profile';
+import { v4 as uuidv4 } from 'uuid';
 
-// type
+// db
+import { db } from '@/lib/db';
 import { MemberRole } from '@prisma/client';
+import { currentProfile } from '@/lib/current-profile';
 
 export async function POST(req: Request) {
   try {

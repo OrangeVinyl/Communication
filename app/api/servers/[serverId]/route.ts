@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import { currentProfile } from '@/lib/current-profile';
+
+// db
 import { db } from '@/lib/db';
+import { currentProfile } from '@/lib/current-profile';
 
 export async function PATCH(req: Request, { params }: { params: { serverId: string } }) {
   try {

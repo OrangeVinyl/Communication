@@ -1,4 +1,6 @@
 import { create } from 'zustand';
+
+// db
 import { Server } from '@prisma/client';
 
 export type ModalType =

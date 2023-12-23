@@ -7,6 +7,9 @@ import { useForm } from 'react-hook-form';
 import { useParams, useRouter } from 'next/navigation';
 import qs from 'query-string';
 
+// db
+import { ChannelType } from '@prisma/client';
+
 // components
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -35,9 +38,6 @@ import {
 
 // hooks
 import { useModal } from '@/hooks/use-modal-store';
-
-//type
-import { ChannelType } from '@prisma/client';
 
 const formSchema = z.object({
   name: z
