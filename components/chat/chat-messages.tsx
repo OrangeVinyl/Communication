@@ -1,0 +1,66 @@
+'use client';
+
+import { Loader2, ServerCrash } from 'lucide-react';
+
+// db
+import { Member } from '@prisma/client';
+
+// components
+import { ChatWelcome } from '@/components/chat/chat-welcome';
+import { useChatQuery } from '@/hooks/use-chat-query';
+
+interface ChatMessagesProps {
+  name: string;
+  member: Member;
+  chatId: string;
+  apiUrl: string;
+  socketUrl: string;
+  socketQuery: Record<string, any>;
+  paramKey: 'channelId' | 'conversationId';
+  paramValue: string;
+  type: 'channel' | 'conversation';
+}
+
+export const ChatMessages = ({
+  name,
+  member,
+  chatId,
+  apiUrl,
+  socketUrl,
+  socketQuery,
+  paramKey,
+  paramValue,
+  type,
+}: ChatMessagesProps) => {
+  const queryKey = `chat:${chatId}`;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useChatQuery({
+    queryKey,
+    apiUrl,
+    paramKey,
+    paramValue,
+  });
+
+  if (status === 'pending') {
+    return (
+      <div className={'flex flex-col flex-1 justify-center items-center'}>
+        <Loader2 className={'h-7 w-7 text-zinc-500 animate-spin my-4'} />
+        <p className={'text-xs text-zinc-500 dark:text-zinc-400'}>메세지 로딩 중...</p>
+      </div>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <div className={'flex flex-col flex-1 justify-center items-center'}>
+        <ServerCrash className={'h-7 w-7 text-zinc-500 my-4'} />
+        <p className={'text-xs text-zinc-500 dark:text-zinc-400'}>오류가 발생했습니다</p>
+      </div>
+    );
+  }
+  return (
+    <div className={'flex-1 flex flex-col py-4 overflow-y-auto'}>
+      <div className={'flex-1'} />
+      <ChatWelcome type={type} name={name} />
+    </div>
+  );
+};
