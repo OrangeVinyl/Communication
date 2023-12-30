@@ -13,6 +13,8 @@ interface EmojiPickerProps {
 
 export const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
   const { resolvedTheme } = useTheme();
+
+  //@TODO emoji type string, any 비교
   return (
     <Popover>
       <PopoverTrigger>
@@ -20,7 +22,7 @@ export const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
           className={
             'text-zinc dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition'
           }
-        />{' '}
+        />
       </PopoverTrigger>
       <PopoverContent
         side={'right'}
@@ -30,7 +32,7 @@ export const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
         <Picker
           theme={resolvedTheme}
           data={data}
-          onEmojiSelect={(emoji: string) => onChange(emoji.native)}
+          onEmojiSelect={(emoji: any) => onChange(emoji.native)}
         />
       </PopoverContent>
     </Popover>
