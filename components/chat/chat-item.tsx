@@ -90,6 +90,8 @@ export const ChatItem = ({
       });
 
       await axios.patch(url, values);
+      form.reset();
+      setIsEditing(false);
     } catch (error) {
       console.log(error);
     }
@@ -155,7 +157,9 @@ export const ChatItem = ({
             >
               {content}
               {isUpdated && !deleted && (
-                <span className={'text-[10px] text-zinc-500 dark:text-zinc-400'}>(수정됨)</span>
+                <span className={'text-[10px] text-zinc-500 dark:text-zinc-400 ml-2'}>
+                  (수정됨)
+                </span>
               )}
             </p>
           )}
@@ -177,7 +181,7 @@ export const ChatItem = ({
                             className={
                               'p-2 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200'
                             }
-                            placeholder={'수정된 메세지'}
+                            placeholder={'메세지를 수정하세요'}
                             {...field}
                           />
                         </div>
