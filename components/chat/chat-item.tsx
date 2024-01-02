@@ -13,6 +13,9 @@ import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash, X } from 'lucide-react
 // db
 import { Member, MemberRole, Profile } from '@prisma/client';
 
+// hooks
+import { useModal } from '@/hooks/use-modal-store';
+
 // components
 import { UserAvatar } from '@/components/user-avatar';
 import { ActionTooltip } from '@/components/action-tooltip';
@@ -56,7 +59,7 @@ export const ChatItem = ({
   socketQuery,
 }: ChatItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const { onOpen } = useModal();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -219,6 +222,9 @@ export const ChatItem = ({
           {canDeleteMessage && (
             <ActionTooltip label={'삭제'}>
               <Trash
+                onClick={() =>
+                  onOpen('deleteMessage', { apiUrl: `${socketUrl}/${id}`, query: socketQuery })
+                }
                 className={
                   'cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition'
                 }
