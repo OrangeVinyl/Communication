@@ -61,7 +61,7 @@ export const DeleteMessageModal = () => {
               취소
             </Button>
             <Button disabled={isLoading} onClick={onClick} variant={'primary'}>
-              나가기
+              삭제
             </Button>
           </div>
         </DialogFooter>
