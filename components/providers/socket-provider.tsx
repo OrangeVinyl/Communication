@@ -21,7 +21,6 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
-  //@TODO NEXT_PUBLIC_SITE_URL 배포 사이트로 변경 예정
   useEffect(() => {
     const socketInstance = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL!, {
       path: '/api/socket/io',
